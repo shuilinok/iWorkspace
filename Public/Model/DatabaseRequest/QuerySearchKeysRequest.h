@@ -6,9 +6,9 @@
 //  Copyright © 2017 enjoyloop. All rights reserved.
 //
 
-#import "FGCoreDataRequest.h"
+#import "XSCoreDataRequest.h"
 
-@interface QuerySearchKeysRequest : FGCoreDataRequest
+@interface QuerySearchKeysRequest : XSCoreDataRequest
 
 @property (readonly, strong, nonatomic) NSArray *keys;
 

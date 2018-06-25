@@ -18,7 +18,7 @@
 
 @implementation QuerySearchKeysRequest
 
-- (void)execute:(NSManagedObjectContext *)moc callback:(ResultCallback)callback
+- (void)execute:(NSManagedObjectContext *)moc callback:(dispatch_block_t)callback
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SearchHistoryEntity" inManagedObjectContext:moc];
@@ -35,7 +35,7 @@
     
     self.keys = infos;
     
-    callback(nil);
+    callback();
 }
 
 @end

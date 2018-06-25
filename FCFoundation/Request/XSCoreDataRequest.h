@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XSCallback.h"
 #import <CoreData/CoreData.h>
 
 
@@ -19,20 +18,24 @@
 
 @property (weak, nonatomic) XSCoreDataRequestManager *manager;
 
-- (void)send:(XSResultCallback)callback;
+@property (readonly, strong, nonatomic) NSError *error;
+
+- (void)send:(dispatch_block_t)callback;
 
 @end
 
 
 @interface XSCoreDataRequest (ManagerAccess)
 
-@property (readonly, copy, nonatomic) XSResultCallback callback;
+@property (readonly, copy, nonatomic) dispatch_block_t callback;
+
+@property (strong, nonatomic) NSError *error;
 
 - (NSError *)save:(NSManagedObjectContext *)moc;
 
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request error:(NSError **)error moc:(NSManagedObjectContext *)moc;
 
 //子类重写
-- (void)execute:(NSManagedObjectContext *)moc callback:(XSResultCallback)callback;
+- (void)execute:(NSManagedObjectContext *)moc callback:(dispatch_block_t)callback;
 
 @end

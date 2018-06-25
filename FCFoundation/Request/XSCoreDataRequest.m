@@ -10,12 +10,12 @@
 #import "XSCoreDataRequestManager.h"
 
 @interface XSCoreDataRequest ()
-@property (copy, nonatomic) XSResultCallback callback;
+@property (copy, nonatomic) dispatch_block_t callback;
 @end
 
 @implementation XSCoreDataRequest
 
-- (void)send:(XSResultCallback)callback
+- (void)send:(dispatch_block_t)callback
 {
     self.callback = callback;
     
@@ -27,7 +27,7 @@
     [self.manager addRequest:self];
 }
 
-- (void)execute:(NSManagedObjectContext *)moc callback:(XSResultCallback)callback
+- (void)execute:(NSManagedObjectContext *)moc callback:(dispatch_block_t)callback
 {
     //子类实现
     abort();
